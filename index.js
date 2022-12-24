@@ -16,13 +16,22 @@ const userArr = [
         id:2,
         name: 'mahmoo'
     }
-]
+] 
 
 
 app.get('/', (req,res)=>{
     res.send('hello world')
 })
-
+//query
+app.get('/users/', (req,res)=>{
+  console.log(req.query)
+  return res.json({users: userArr, message: "user fetch successfully"})
+})
+//params
+app.get('/users/:name/:id', (req,res)=>{
+  console.log(req.params)
+  return res.json({users: userArr, message: "user fetch successfully"})
+})
 app.get('/getUsers', (req,res)=>{
     res.json(userArr)
 })
