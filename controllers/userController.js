@@ -1,4 +1,6 @@
 const User = require("../models/User");
+const bcrypt = require('bcrypt')
+
 
 exports.signup = async (req, res) => {
   try {
@@ -27,10 +29,12 @@ exports.signin = async(req, res)=>{
     try{    
         const user = await User.findOne({email: req.body.email})
         console.log(user);
+
         if(!user){
             return res.status(400).json({message: "please signup first"})
         }
-        if(user.password != req.body.password){
+        const isPasswordMatching = bcrypt.compareSync(req.body.password, user.password)
+        if(!isPasswordMatching){
             return res.status(400).json({message: "incorrect password"})
         }
         return res.status(200).json({message : " signin successfully"})
