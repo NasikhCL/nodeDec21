@@ -62,7 +62,7 @@ app.use('/user', UserRoutes)
 //   })
 
 
-
+app.set('secretKey', 'privateKey')
 
 app.listen(port, ()=>{
     console.log('server is up and running in port : ' + port)
