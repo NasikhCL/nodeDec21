@@ -10,15 +10,15 @@ exports.validateJWT = (req, res, next)=>{
         jwt.verify(token, req.app.get('secretKey'), function(err, decodedData){
             if(err){
                 console.log(err);
-                return res.status(400).json({message: err})
+                return res.status(400).json({message: err.message})
             }
             console.log(decodedData);
             req.body.userId = decodedData._id
         })
-        // next();
+        next();
     
     }catch(err){
         console.log(err);
-        return res.status(500).json({message: 'internal server error'})
+        return res.status(500).json({message: 'internal server error'}) 
     } 
 }

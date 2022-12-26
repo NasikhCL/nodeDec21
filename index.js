@@ -3,11 +3,13 @@ const app = express();
 const port =8000;
 const bodyPaser = require('body-parser');
 const db = require('./config/mongoose');
-const UserRoutes = require('./routes/userRoutes')
-
+const userRoutes = require('./routes/userRoutes')
+const productRoutes = require('./routes/productRoutes')
 app.use(bodyPaser.urlencoded({extended: true}));
 app.use(bodyPaser.json())
-app.use('/user', UserRoutes)
+app.use('/user', userRoutes)
+
+app.use('/product', productRoutes)
 // const userArr = [
 //     {
 //         id:1,
