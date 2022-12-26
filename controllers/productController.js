@@ -87,3 +87,24 @@ exports.getProductById = async (req, res) => {
         .json({ error: err, message: "Internal Server Error" });
     }
   };
+
+  
+exports.updateQuantity = async (req, res) => {
+    try {
+      const productId = req.params.id;
+      const { quantityDecrease } = req.body;
+      const updatedProduct = await Product.findByIdAndUpdate(productId, {
+        $inc: { quantity: -quantityDecrease }
+      });
+      if (!updatedProduct) {
+        return res
+          .status(400)
+          .json({ message: "Quantity updation failed/Invalid Id" });
+      }
+      return res.status(200).json({ message: "Quantity updated successfully" });
+    } catch (err) {
+      return res
+        .status(500)
+        .json({ error: err, message: "Internal Server Error" });
+    }
+  };

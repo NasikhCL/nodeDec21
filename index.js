@@ -4,11 +4,12 @@ const port =8000;
 const bodyPaser = require('body-parser');
 const db = require('./config/mongoose');
 const userRoutes = require('./routes/userRoutes')
+const CategoryRoutes = require('./routes/categoryRoutes')
 const productRoutes = require('./routes/productRoutes')
 app.use(bodyPaser.urlencoded({extended: true}));
 app.use(bodyPaser.json())
 app.use('/user', userRoutes)
-
+app.use('/category', CategoryRoutes)
 app.use('/product', productRoutes)
 // const userArr = [
 //     {
@@ -17,7 +18,7 @@ app.use('/product', productRoutes)
 //     }, 
 //     {
 //         id:2,
-//         name: 'mahmoo'
+//         name: 'mahmoo' 
 //     } 
 // ] 
 
