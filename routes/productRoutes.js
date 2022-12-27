@@ -6,7 +6,8 @@ const {
   getProductById,
   deleteProduct,
   updateProduct,
-  updateQuantity
+  updateQuantity,
+  productSold
 } = require("../controllers/productController");
 const { validateJWT } = require('../middleware/jwt');
 
@@ -17,4 +18,5 @@ router.get("/getProductById/:id", validateJWT, getProductById);
 router.delete("/deleteProduct/:id", validateJWT, deleteProduct);
 router.put("/updateProduct/:id", validateJWT, updateProduct);
 router.put("/updateQuantity/:id", validateJWT, updateQuantity);
+router.put('/productSold/:id', validateJWT, productSold)
 module.exports = router

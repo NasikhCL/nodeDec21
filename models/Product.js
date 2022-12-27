@@ -28,7 +28,11 @@ const ProductSchema = mongoose.Schema(
         isActive: {
             type: Boolean,
             default: true
-        }
+        },
+        bought_by:[{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }]
     },{timestamps: true} 
 )
 
